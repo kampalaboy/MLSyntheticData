@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width,
+         maximum-scale=0.9,user-scalable=0">
+      <meta charset="UTF-8">
+      <title>Data Creator</title>
+   </head>
+   <body>
+      <div id="content">
+         <h1>Data Creator</h1>
+         <div>
+            <span id="instructions"></span>
+            
+         </div>
+         <br>
+         <div id="sketchPadContainer"></div>
+         <button onclick="next();">
+            NEXT
+        </button>
+         <button onclick="save();">
+            SAVE
+        </button>
+      </div>
+      <script src="../common/draw.js"></script>
+      <script src="js/sketchPad.js"></script>
+
+      <script>
+         let index=0;
+         const labels=[ 'Zari','Tyson','Simone','Kylie','Zendaya',
+                        'Beiber','Monroe','Diamond','Oprah','Markle',
+ 
+                        'bot','npc','anime','fantasia','westworld','PS3','wwe','neuron','silicon','gucci','prada',
+                        'lion','tigress','synth','matrix','stranger','traffic', 'violent', 'PG','merch', 
+                        'email', 'block', 'crypto', 'comp'
+                        ];
+
+         const data={
+            session:new Date().getTime(),
+            drawings:{}
+         };
+
+         const sketchPad=
+            new SketchPad(sketchPadContainer);
+
+            const label=labels[index];
+            instructions.innerHTML="Please draw a "+label;
+            data.drawings[label]=sketchPad.paths;
+               
+         function next(){
+            const label=labels[index];
+            data.drawings[label]=sketchPad.paths;
+            sketchPad.reset();
+            
+            index++;
+               const nextLabel=labels[index];
+               instructions.innerHTML="Please draw a "+nextLabel;
+         }
+
+         function save(){
+
+            instructions.innerHTML="Take your downloaded file and place it alongside the others in the dataset!";
+
+            const element=document.createElement('a');
+            element.setAttribute('href', 
+               'data:application/json;charset=utf-8,'+
+               encodeURIComponent(JSON.stringify(data))
+            );
+
+            const fileName=data.session+".json";
+            element.setAttribute('download', fileName);
+
+            element.style.display='none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+         }
+      </script>
+   </body>
+</html>

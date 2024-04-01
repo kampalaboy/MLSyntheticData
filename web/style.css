@@ -1,0 +1,31 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed for spacing between columns */
+}
+
+.sampleContainer {
+    width: calc(25% - 10px); /* Adjust the width as needed, considering margin */
+    margin: 5px; /* Adjust the margin as needed */
+}
+
+.thumb {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid tan;
+}
+
+.rowLabel {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px; /* Adjust as needed for spacing between rows */
+}
+.emphasize{
+    background-color: turquoise !important;
+}
+
+#compare{
+    display: flex;
+    justify-content: center;
+}
